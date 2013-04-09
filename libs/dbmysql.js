@@ -73,7 +73,7 @@ var MySQLSakai=(function(){
           
           var ses= sessiones.shift();
           if(!ses){
-             db.end();
+             //db.end();
             fn(resultado);
           }else{
             var eventos=[];

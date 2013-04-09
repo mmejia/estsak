@@ -3,15 +3,16 @@ window.SessionListView= Backbone.View.extend({
      	//this.render();
      },
      render:function(){
-     	var sessiones= this.model.models;
-     	var lens= sessiones.lensgth;
+     	var sessiones= this.model;
+      var sel= this.options.sel;
+      
      	 $(this.el).html(this.template());
          $(this.el).addClass('span12');
           console.log(this.el);
-          var sess= this.model.toJSON();
-     	for(var i=0;i<lens;i++){
-     		$('#sessiones tbody',this.el).append(new SessionListItemView({model:sessiones[i]}).render().el);
-            var eventos= sess[i].EVENTOS;
+          var sess= this.model;
+   
+     		$('#sessiones tbody',this.el).append(new SessionListItemView({model:sessiones[sel]}).render().el);
+            var eventos= sess[sel].EVENTOS;
             var ar_tmp=[];
             var lens_eventos= eventos.lensgth;
             var bloques= lens_eventos/3;
@@ -34,7 +35,7 @@ window.SessionListView= Backbone.View.extend({
                 }
                   
                }
-        }
+       
         return this;
      }
  
@@ -69,7 +70,7 @@ window.BloqueEventoItemView=Backbone.View.extend({
 window.SessionListItemView= Backbone.View.extend({
      tagName:"tr",
      render: function(){
-     	$(this.el).html(this.template(this.model.toJSON()));
+     	$(this.el).html(this.template(this.model));
      	return this;
      }
 

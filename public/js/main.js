@@ -1,7 +1,7 @@
 var AppRouter = Backbone.Router.extend({
 
     routes: {
-        ""                  : "home",
+        ""                  : "sessiones",
         "wines"	: "list",
         "wines/page/:page"	: "list",
         "wines/add"         : "addWine",
@@ -19,38 +19,18 @@ var AppRouter = Backbone.Router.extend({
         if (!this.homeView) {
             this.homeView = new HomeView();
         }
-        $('#content').html(this.homeView.el);
-        this.headerView.selectMenuItem('home-menu');
+        $('#content').html("<h3>Pagina de inicio del sistema </h3>");
+        //this.headerView.selectMenuItem('home-menu');
     },
-    sessiones: function(id){
+    sessiones: function(){
         console.log("Entro a checar el session");
-        var col=   new Backbone.Collection();
-          col.url="/sessiones";
-          col.fetch= function(){
-            var collection = this;
-             $.ajax({
-                 type : 'GET',
-                 url : "/sessiones",
-                 success : function(data) {
-                                // console.log("Viste como lloraba la mama");
-                                 for(var i=0;i< data.length;i++){
-                                     var item= data[i];
-                                    // console.log(item);
-                                     collection.add(item);
-                                  }
-                                     console.log("secccccccccccccccc");
-                                     console.log(collection.toJSON());
-                                      console.log();
-                                     // collection.
-                                   //$('#content').html(collection.toJSON());
-                                    $("#menuMain").html(new MenuSessionView({model:collection}).render().el);
-                                    $("#content").append(new SessionListView({model: collection}).render().el); 
-                            }
-             });
-
-          };
-         
-         col.fetch();
+        var col=new SessionCollection();
+          col.fetch(function(datos){ 
+            var seleccionar=10;
+             $("#menuMain").html(new MenuSessionView({model:datos,sel:10}).render().el);
+            $("#content").append(new SessionListView({model: datos,sel:10}).render().el); 
+           });
+       
        // console.log(col.toJSON());
          
         

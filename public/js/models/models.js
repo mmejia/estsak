@@ -72,9 +72,28 @@ window.Ses = Backbone.Model.extend({
 });
  
 window.WineCollection = Backbone.Collection.extend({
-
+   
      
     url: "/wines"
 });
 
- 
+window.SessionCollection=Backbone.Collection.extend({
+    fetch: function(fn){
+              $.ajax({
+                 type : 'GET',
+                 url : "/sessiones",
+                 success : function(data) {
+                                // console.log("Viste como lloraba la mama");
+                                 var collection=[];
+                                  for(var i=0;i< data.length;i++){
+                                     var item= data[i];
+                                      collection.push(item);
+                                }
+                                fn(collection); 
+                            }
+
+                 });
+
+    },
+
+});
