@@ -14,7 +14,7 @@ var app = express();
 
 var cargarSessiones=function(req,res){
     principal.listSessiones(function(result){
-
+      /*La seguridad este es un comentario tonto */
          res.send(result);
     });
 
