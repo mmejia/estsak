@@ -5,14 +5,15 @@ window.SessionListView= Backbone.View.extend({
      render:function(){
      	var sessiones= this.model;
       var sel= this.options.sel;
-      
+      var current= _.find(sessiones,{SESSION_ID:sel})
+       var actual=current[0];
      	 $(this.el).html(this.template());
          $(this.el).addClass('span12');
-          console.log(this.el);
-          var sess= this.model;
-   
-     		$('#sessiones tbody',this.el).append(new SessionListItemView({model:sessiones[sel]}).render().el);
-            var eventos= sess[sel].EVENTOS;
+          
+          
+         
+     		$('#sessiones tbody',this.el).append(new SessionListItemView({model:actual}).render().el);
+            var eventos= current.EVENTOS;
             var ar_tmp=[];
             var lens_eventos= eventos.lensgth;
             var bloques= lens_eventos/3;

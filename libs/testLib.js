@@ -1,8 +1,14 @@
-var principal= require("./dbmysql");
-principal.listarSessiones();
+ var _=require('underscore');
  
-principal.on("evt_SessionesCargadas",function(data){
-
-
-	  console.log(JSON.stringify(data));
-})
+ var objectA = {
+ 	hola:'Soy el hola de A',
+    aFunction: function() {console.log('Vamos a imprimir el hola: '+ this.hola)},
+    anAttribute: 'foo'
+};
+var objectB = {
+	hola:"Acelerado",
+    anotherFunction: function() { console.log("Vamos a mensajear el hola; "+ hola)},
+    anotherAttribute: 'bar'
+};
+_.extend(objectA, {});
+objectA.aFunction();

@@ -18,16 +18,16 @@ window.MenuSessionView= Backbone.View.extend(
             var sel= this.options.sel;
          	var len= sessiones.length;
          	$(this.el).html(this.template());
-         	 for(var i=0;i<len;i++){
-         	 	    var ses= sessiones[i];
-         	 	   // var sis= ses.toJSON;
-         	 	    if(i==sel){
-     		            $('#menuSession',this.el).append('<li class="active"><a href="#">'+ses.SESSION_ID+'</a></li>');
-     		        }else{
-     		        	$('#menuSession',this.el).append('<li><a id="'+ses.SES+'" href="#">'+ses.SESSION_ID+'</a></li>');
-     		        } 
-
-              }
+         	 //var sel_ses=var ses= _.where(sessiones,{SESSION_ID:sel});
+             _.each(sessiones,function(dd){
+                      if(dd.SESSION_ID==sel){
+                           $('#menuSession',this.el).append('<li class="active"><a href="#">'+dd.SESSION_ID+'</a></li>');
+                      }else{
+                            $('#menuSession',this.el).append('<li><a id="'+dd.SES+'" href="#">'+dd.SESSION_ID+'</a></li>');
+                      }
+              
+             });
+             
               console.log(this.el);
          	return this;
          }

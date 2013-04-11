@@ -27,8 +27,9 @@ var AppRouter = Backbone.Router.extend({
         var col=new SessionCollection();
           col.fetch(function(datos){ 
             var seleccionar=10;
-             $("#menuMain").html(new MenuSessionView({model:datos,sel:10}).render().el);
-            $("#content").append(new SessionListView({model: datos,sel:10}).render().el); 
+            var ses= datos[0].SESSION_ID;
+             $("#menuMain").html(new MenuSessionView({model:datos,sel:ses}).render().el);
+            $("#content").append(new SessionListView({model: datos,sel:ses}).render().el); 
            });
        
        // console.log(col.toJSON());
