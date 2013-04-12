@@ -4,6 +4,7 @@ var express = require('express'),
     interfaces=require('./testlib/class');
     _= require('underscore');
     wine = require('./routes/wines');
+    route_snmp= require('./routes/url_snmp.js');
     principal= require('./libs/dbmysql');
 
 var app = express();
@@ -27,6 +28,7 @@ var cargarSessiones=function(req,res){
 app.get('/wines', wine.findAll);
 app.get('/sessiones',cargarSessiones );
 app.get('/interfaces',interfaces.leerJSONInterfaces );
+app.get('/interfaces/etch0',route_snmp.etch0 );
 app.get('/wines/:id', wine.findById);
 app.post('/wines', wine.addWine);
 app.put('/wines/:id', wine.updateWine);

@@ -7,7 +7,8 @@ var AppRouter = Backbone.Router.extend({
         "wines/add"         : "addWine",
         "wines/:id"         : "wineDetails",
         "about"             : "about",
-        "sessiones"         :"sessiones"
+        "sessiones"         :"sessiones",
+        "interfaces/etch0/"  :"etch0"
     },
 
     initialize: function () {
@@ -21,6 +22,15 @@ var AppRouter = Backbone.Router.extend({
         }
         $('#content').html("<h3>Pagina de inicio del sistema </h3>");
         //this.headerView.selectMenuItem('home-menu');
+    },
+    etch0: function(){
+         console.log("Entro a generar la grafica del eth0");
+         var col=new Etch0Collection();
+         col.fetch({success: function(){
+            $("#content").html(new InterfaceGraficaView({model:col}).render().el);
+        }});
+        
+         
     },
     sessiones: function(){
         console.log("Entro a checar el session");
@@ -75,7 +85,7 @@ var AppRouter = Backbone.Router.extend({
 utils.loadTemplate(['HomeView', 'HeaderView', 'WineView', 
     'WineListItemView', 'AboutView','SessionListView',
     'SessionListItemView','MenuSessionView',
-    'BloqueEventoItemView'
+    'BloqueEventoItemView','InterfaceGraficaView'
     ], function() {
     app = new AppRouter();
     Backbone.history.start();

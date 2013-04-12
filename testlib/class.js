@@ -104,6 +104,7 @@ function leerInterfaces(fn){
 
 }
 function leerJSONInterfaces(req,res){
+          
       leerInterfaces(function(data){
       	res.send(data)
       });
@@ -118,6 +119,7 @@ module.exports= (function(){
        var modulo={};
        modulo.funcname=funcname;
        modulo.leerJSONInterfaces=leerJSONInterfaces;
+       modulo.leerInterfaces=leerInterfaces;
        return modulo; 
   })();
 

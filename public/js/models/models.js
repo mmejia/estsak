@@ -76,7 +76,9 @@ window.WineCollection = Backbone.Collection.extend({
      
     url: "/wines"
 });
-
+window.Etch0Collection= Backbone.Collection.extend({
+     url:"/interfaces/etch0"
+});
 window.SessionCollection=Backbone.Collection.extend({
     fetch: function(fn){
               $.ajax({
